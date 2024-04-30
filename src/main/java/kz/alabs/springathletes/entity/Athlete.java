@@ -1,19 +1,38 @@
 package kz.alabs.springathletes.entity;
 
-import lombok.Builder;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
 import java.time.LocalDate;
-@Data
-@Builder
+import java.time.Period;
 
+@Data
+@Entity
+@Table(name = "athletes")
 public class Athlete {
+    @Getter
+    @Setter
+    @jakarta.persistence.Id
+    @Id
+    @GeneratedValue
+    private Long id;
     private String name;
     private String surName;
     private LocalDate birthDate;
+    @Transient
     private int age;
+    @Column(unique = true)
     private String phoneNumber;
 
+    public int getAge() {
+        return Period.between(birthDate, LocalDate.now()).getYears();
+    }
 }

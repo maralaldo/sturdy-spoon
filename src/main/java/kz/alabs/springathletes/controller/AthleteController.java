@@ -20,8 +20,9 @@ public class AthleteController {
         return service.findAllAthlete();
     }
     @PostMapping("/save_athlete")
-    public Athlete saveAthlete(@RequestBody Athlete athlete) {
-        return service.saveAthlete(athlete);
+    public String saveAthlete(@RequestBody Athlete athlete) {
+        service.saveAthlete(athlete);
+        return "Athlete saved successfully";
     }
 
     @GetMapping("/{phoneNumber}")
@@ -30,7 +31,7 @@ public class AthleteController {
     }
 
     @PutMapping("/update_athlete")
-    public Athlete updateAthlete(Athlete athlete) {
+    public Athlete updateAthlete(@RequestBody Athlete athlete) {
         return service.updateAthlete(athlete);
     }
 
