@@ -1,7 +1,7 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-    <changeSet author="user (generated)" id="1714583306547-1">
-        <createTable tableName="athletes">
+    <changeSet author="maralaldo" id="1714583306547-1">
+        <createTable tableName="athletes" ifNotExists="true">
             <column name="age" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
@@ -16,13 +16,18 @@
             <column name="profile" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="user (generated)" id="1714583306547-2">
+    <changeSet author="maralaldo" id="1714583306547-2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">(select count(*)
+                                          from information_schema.constraint_column_usage
+                                          where table_name = 'athletes'  and constraint_name = 'athletes_phone_number_key')</sqlCheck>
+        </preConditions>
         <addUniqueConstraint columnNames="phone_number" constraintName="athletes_phone_number_key" tableName="athletes"/>
     </changeSet>
-    <changeSet author="user (generated)" id="1714583306547-3">
+    <changeSet author="maralaldo" id="1714583306547-3">
         <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="50" maxValue="9223372036854775807" minValue="1" sequenceName="athlete_seq" startValue="1"/>
     </changeSet>
-    <changeSet author="user (generated)" id="1714583306547-4">
+    <changeSet author="maralaldo" id="1714583306547-4">
         <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="50" maxValue="9223372036854775807" minValue="1" sequenceName="athletes_seq" startValue="1"/>
     </changeSet>
 </databaseChangeLog>
