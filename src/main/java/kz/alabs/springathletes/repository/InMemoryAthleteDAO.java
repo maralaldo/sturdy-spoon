@@ -1,5 +1,6 @@
 package kz.alabs.springathletes.repository;
 
+import kz.alabs.springathletes.dto.AthleteView;
 import kz.alabs.springathletes.entity.Athlete;
 import org.springframework.stereotype.Repository;
 
@@ -10,17 +11,18 @@ import java.util.stream.IntStream;
 @Repository
 public class InMemoryAthleteDAO {
     private final List<Athlete> ATHLETES = new ArrayList<>();
+    private final List<AthleteView> ATHLETES_VIEW = new ArrayList<>();
     public List<Athlete> findAllAthlete() {
         return ATHLETES;
     }
 
     public Athlete saveAthlete(Athlete athlete) {
-        ATHLETES.add(athlete);
+//        ATHLETES.add(athlete);
         return athlete;
     }
 
-    public Athlete findByPhoneNumber(String phoneNumber) {
-        return ATHLETES.stream()
+    public AthleteView findByPhoneNumber(String phoneNumber) {
+        return ATHLETES_VIEW.stream()
                 .filter(element -> element.getPhoneNumber().equals(phoneNumber))
                 .findFirst()
                 .orElse(null);

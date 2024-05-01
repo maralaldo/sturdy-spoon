@@ -1,5 +1,6 @@
 package kz.alabs.springathletes.service.impl;
 
+import kz.alabs.springathletes.dto.AthleteView;
 import kz.alabs.springathletes.entity.Athlete;
 import kz.alabs.springathletes.repository.AthleteRepository;
 import kz.alabs.springathletes.service.AthleteService;
@@ -27,7 +28,7 @@ public class AthleteServiceImpl implements AthleteService {
     }
 
     @Override
-    public Athlete findByPhoneNumber(String phoneNumber) {
+    public AthleteView findByPhoneNumber(String phoneNumber) {
         return repository.findAthleteByPhoneNumber(phoneNumber);
     }
 

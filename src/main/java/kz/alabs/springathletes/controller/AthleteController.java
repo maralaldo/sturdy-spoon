@@ -1,5 +1,6 @@
 package kz.alabs.springathletes.controller;
 
+import kz.alabs.springathletes.dto.AthleteView;
 import kz.alabs.springathletes.entity.Athlete;
 import kz.alabs.springathletes.service.AthleteService;
 import lombok.AllArgsConstructor;
@@ -26,7 +27,7 @@ public class AthleteController {
     }
 
     @GetMapping("/{phoneNumber}")
-    public Athlete findByPhoneNumber(@PathVariable String phoneNumber) {
+    public AthleteView findByPhoneNumber(@PathVariable String phoneNumber) {
         return service.findByPhoneNumber(phoneNumber);
     }
 

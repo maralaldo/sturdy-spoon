@@ -1,5 +1,6 @@
 package kz.alabs.springathletes.service.impl;
 
+import kz.alabs.springathletes.dto.AthleteView;
 import kz.alabs.springathletes.entity.Athlete;
 import kz.alabs.springathletes.repository.InMemoryAthleteDAO;
 import kz.alabs.springathletes.service.AthleteService;
@@ -14,8 +15,8 @@ public class InMemoryAthleteServiceImpl implements AthleteService {
     private final InMemoryAthleteDAO repository;
     @Override
     public List<Athlete> findAllAthlete() {
-            return repository.findAllAthlete();
-        }
+        return repository.findAllAthlete();
+    }
 
     @Override
     public Athlete saveAthlete(Athlete athlete) {
@@ -23,7 +24,7 @@ public class InMemoryAthleteServiceImpl implements AthleteService {
     }
 
     @Override
-    public Athlete findByPhoneNumber(String phoneNumber) {
+    public AthleteView findByPhoneNumber(String phoneNumber) {
         return repository.findByPhoneNumber(phoneNumber);
     }
 

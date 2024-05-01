@@ -29,8 +29,10 @@ public class Athlete {
     private LocalDate birthDate;
     @Transient
     private int age;
+    private String profile;
     @Column(unique = true)
     private String phoneNumber;
+    private String password;
 
     public int getAge() {
         return Period.between(birthDate, LocalDate.now()).getYears();
