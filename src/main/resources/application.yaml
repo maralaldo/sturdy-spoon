@@ -16,3 +16,7 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/changelog-master.xml
+server:
+  servlet:
+    session:
+      timeout: 86400

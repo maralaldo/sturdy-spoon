@@ -17,7 +17,6 @@ public class AthleteController {
 
     @GetMapping
     public List<Athlete> findAllAthlete() {
-        //todo
         return service.findAllAthlete();
     }
     @PostMapping("/save_athlete")
